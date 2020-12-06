@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "5042550164",
+    "project_id": "bus-lines-ec1be",
+    "storage_bucket": "bus-lines-ec1be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5042550164:android:b700b8a0a80547de618b81",
+        "android_client_info": {
+          "package_name": "com.buslines.busapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5042550164-asjijtequ93sbt98735i3q5h1fatns39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgo6V6uUitS37NGyyCEELZvhjIwmBIY9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5042550164-asjijtequ93sbt98735i3q5h1fatns39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
