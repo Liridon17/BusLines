@@ -1,11 +1,10 @@
-import 'package:busapp/services/auth.dart';
+import 'package:erato/services/auth.dart';
+import 'package:erato/shared/loading.dart';
 import 'package:flutter/material.dart';
-import 'package:busapp/shared/loading.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
   SignIn({this.toggleView});
-
   @override
   _SignInState createState() => _SignInState();
 }
@@ -13,75 +12,64 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
-
   bool loading = false;
-
-  String email = '';
-  String password = '';
-  String error = '';
+  String email = "";
+  String password = "";
+  String error = "";
   @override
   Widget build(BuildContext context) {
     return loading
         ? Loading()
         : Scaffold(
-            resizeToAvoidBottomInset: false,
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0.0,
-            ),
-            body: SafeArea(
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-                child: Form(
-                  key: _formKey,
+            body: Container(
+              padding: EdgeInsets.symmetric(vertical: 40.0, horizontal: 40.0),
+              child: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      SizedBox(height: 150.0),
                       Text(
                         'Welcome Back',
                         style: TextStyle(
-                          fontSize: 28,
+                          fontSize: 40,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 15.0),
                       Text('Sign in with your email and password'),
-                      SizedBox(height: 40.0),
+                      SizedBox(height: 20.0),
                       TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          labelText: "Email",
+                          hintText: "e.g abc@gmail.com",
+                          suffixIcon: Icon(Icons.email),
+                        ),
                         validator: (val) =>
-                            val.isEmpty ? 'Enter an email' : null,
+                            val.isEmpty ? 'Email can\'t be empty' : null,
                         onChanged: (val) {
                           setState(() => email = val);
                         },
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          labelText: 'Email',
-                        ),
                       ),
                       SizedBox(height: 20.0),
                       TextFormField(
-                        obscureText: true,
-                        validator: (val) => val.length < 6
-                            ? 'Enter an password with 6 or more charaters'
-                            : null,
-                        onChanged: (val) {
-                          setState(() => password = val);
-                        },
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            labelText: "Password",
+                            suffixIcon: Icon(Icons.lock),
                           ),
-                          labelText: 'Password',
-                        ),
-                      ),
+                          validator: (val) => val.length < 6
+                              ? 'Password must be at least 6 characters long'
+                              : null,
+                          obscureText: true,
+                          onChanged: (val) {
+                            setState(() => password = val);
+                          }),
                       SizedBox(height: 20.0),
                       MaterialButton(
                         minWidth: double.infinity,
@@ -93,13 +81,15 @@ class _SignInState extends State<SignIn> {
                           if (_formKey.currentState.validate()) {
                             setState(() => loading = true);
                             dynamic result = await _auth
-                                .signinWithEmailAndPassword(email, password);
+                                .signInWithEmailAndPassword(email, password);
                             if (result == null) {
-                              setState(() {
-                                error =
-                                    'Could not sign in with those cedentials ';
-                                loading = false;
-                              });
+                              setState(
+                                () {
+                                  error =
+                                      'The email or password that you have entered is incorrect.';
+                                  loading = false;
+                                },
+                              );
                             }
                           }
                         },
@@ -117,12 +107,8 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20.0),
-                      Text(
-                        error,
-                        style: TextStyle(color: Colors.red, fontSize: 14.0),
-                      ),
-                      SizedBox(height: 20.0),
+                      SizedBox(height: 12.0),
+                      Text(error),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -138,7 +124,7 @@ class _SignInState extends State<SignIn> {
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.busapp">
+    package="com.eratobuslines.erato">
    <application
-        android:label="busapp"
+        android:label="Erato"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

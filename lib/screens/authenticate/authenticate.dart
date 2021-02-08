@@ -1,6 +1,6 @@
-import 'package:busapp/screens/authenticate/sign_in.dart';
+import 'package:erato/screens/authenticate/register.dart';
+import 'package:erato/screens/authenticate/sign_in.dart';
 import 'package:flutter/material.dart';
-import 'package:busapp/screens/authenticate/register.dart';
 
 class Authenticate extends StatefulWidget {
   @override

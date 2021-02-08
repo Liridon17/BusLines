@@ -1,4 +1,4 @@
-package com.example.busapp;
+package com.eratobuslines.erato;
 
 import io.flutter.embedding.android.FlutterActivity;
 

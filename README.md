@@ -1,6 +1,6 @@
-# busapp
+# erato
 
-A new Flutter application.
+Erato is a Bus Lines App
 
 ## Getting Started
 

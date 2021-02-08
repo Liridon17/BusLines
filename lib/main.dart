@@ -1,8 +1,8 @@
-import 'package:busapp/services/auth.dart';
+import 'package:erato/models/user.dart';
+import 'package:erato/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:busapp/screens/wrapper.dart';
+import 'package:erato/screens/wrapper.dart';
 import 'package:provider/provider.dart';
-import 'package:busapp/models/user.dart';
 
 void main() => runApp(MyApp());
 

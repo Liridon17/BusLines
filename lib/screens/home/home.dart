@@ -1,5 +1,10 @@
-import 'package:busapp/services/auth.dart';
+import 'package:erato/screens/home/cityList.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:erato/services/database.dart';
+import 'package:erato/models/city.dart';
+import 'package:erato/screens/home/favorite.dart';
+import 'package:erato/screens/home/settings/settings.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -7,107 +12,51 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  @override
-  final AuthService _auth = AuthService();
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amber[800],
-        title: Text('Choose your location'),
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(
-              Icons.logout,
-              color: Colors.white,
-            ),
-            label: Text(
-              'Logout',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () async {
-              await _auth.signOut();
-            },
-          ),
-        ],
-      ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return Card(
-            child: InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    new MaterialPageRoute(builder: (context) => Lines()));
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Peja',
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Kosova',
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-        itemCount: 10,
-      ),
-    );
+  int _selectedIndex = 0;
+  List<Widget> _widgetOptions = [
+    Citys(),
+    SettingsPage(),
+  ];
+  void _onItemTep(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
-}
 
-class Lines extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amber[800],
-        title: Text('Peja'),
-      ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        'Pejë',
-                        style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '  Prishtinë',
-                        style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    'Koha e nisjes: 05:40 - Koha e arritjes: 07:00',
-                    style: TextStyle(
-                      color: Colors.grey.shade600,
-                    ),
-                  ),
-                ],
-              ),
+    return StreamProvider<List<City>>.value(
+      initialData: List(),
+      value: DatabaseService().city,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: IndexedStack(
+          children: [
+            Center(
+              child: _widgetOptions.elementAt(_selectedIndex),
             ),
-          );
-        },
-        itemCount: 10,
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.settings,
+              ),
+              label: 'Settings',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTep,
+        ),
       ),
     );
   }

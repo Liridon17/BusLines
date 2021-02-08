@@ -1,4 +1,4 @@
-import 'package:busapp/models/user.dart';
+import 'package:erato/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -13,7 +13,7 @@ class AuthService {
   }
 
   //sign in anon
-  Future signInAnon() async {
+  Future signINAnon() async {
     try {
       AuthResult result = await _auth.signInAnonymously();
       FirebaseUser user = result.user;
@@ -24,8 +24,8 @@ class AuthService {
     }
   }
 
-  //sign in with email & password
-  Future signinWithEmailAndPassword(String email, String password) async {
+  //sing in email password
+  Future signInWithEmailAndPassword(String email, String password) async {
     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
@@ -37,7 +37,7 @@ class AuthService {
     }
   }
 
-  //sign up with email & password
+  //register with email & password
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
@@ -50,7 +50,7 @@ class AuthService {
     }
   }
 
-  // Sign Out
+  // sing out
   Future signOut() async {
     try {
       return await _auth.signOut();

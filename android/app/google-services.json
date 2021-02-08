@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "5042550164",
-    "project_id": "bus-lines-ec1be",
-    "storage_bucket": "bus-lines-ec1be.appspot.com"
+    "project_number": "985030752307",
+    "project_id": "erato-a1c83",
+    "storage_bucket": "erato-a1c83.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:5042550164:android:b700b8a0a80547de618b81",
+        "mobilesdk_app_id": "1:985030752307:android:0c5c9420752113a0654b46",
         "android_client_info": {
-          "package_name": "com.buslines.busapp"
+          "package_name": "com.eratobuslines.erato"
         }
       },
       "oauth_client": [
         {
-          "client_id": "5042550164-asjijtequ93sbt98735i3q5h1fatns39.apps.googleusercontent.com",
+          "client_id": "985030752307-dlmm0a69hda66nn9d2rig37m55a6fle8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eratobuslines.erato",
+            "certificate_hash": "652a8f49522aab5302bf24d4263f994bfeeaa1c6"
+          }
+        },
+        {
+          "client_id": "985030752307-74ts5uuk6hufi667v0mg1vfkivfq3q6o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCgo6V6uUitS37NGyyCEELZvhjIwmBIY9g"
+          "current_key": "AIzaSyDY4HUZ65T0rNVAszDpyV_A4pniDrtjaSc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "5042550164-asjijtequ93sbt98735i3q5h1fatns39.apps.googleusercontent.com",
+              "client_id": "985030752307-74ts5uuk6hufi667v0mg1vfkivfq3q6o.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
